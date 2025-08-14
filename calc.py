@@ -4,7 +4,13 @@ def grad(f, x: float):
     return (f(x + dx) - f(x))/(dx)
 
 def integrate(f, lower: float, upper: float):
+#    assert lower <= upper, "Please Input Valid Boundaries"
     sum = 0
-    for i in np.arange(lower, upper, dx):
-        sum += f(i) * dx
-    return sum
+    if lower < upper:
+        for i in np.arange(lower, upper, dx):
+            sum += f(i) * dx
+        return sum
+    else:
+        for i in np.arange(upper, lower, dx):
+            sum += f(i) * dx
+        return -sum
